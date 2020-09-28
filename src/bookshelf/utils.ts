@@ -121,8 +121,8 @@ function sample(data: Data): Sample {
 
     return sampled;
   } else if (isCollection(data)) {
-    const first: Model = data.head();
-    const rest: Model[] = data.tail();
+    const first: Model = data.first();
+    const rest: Model[] = (<Model[]><unknown> data).slice(1);
     return reduce(rest, mergeSample, sample(first));
   } else {
     return {} as Sample;
